@@ -1,0 +1,330 @@
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg1: #fff1ea;
+  --bg2: #ffd6e0;
+  --text: #4a2a3a;
+  --muted: #7d5a6b;
+  --accent: #e8607e;
+  --accent-text: #fff;
+  --glow: rgba(232, 96, 126, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg1: #2a1a3a;
+    --bg2: #4a2442;
+    --text: #fff1ea;
+    --muted: #d9b8c9;
+    --accent: #ff8fa3;
+    --accent-text: #3a1a2a;
+    --glow: rgba(255, 143, 163, 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg1: #2a1a3a;
+  --bg2: #4a2442;
+  --text: #fff1ea;
+  --muted: #d9b8c9;
+  --accent: #ff8fa3;
+  --accent-text: #3a1a2a;
+  --glow: rgba(255, 143, 163, 0.35);
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  height: 100%;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+body {
+  margin: 0;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  font-family: "Quicksand", system-ui, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+main {
+  width: 100%;
+  max-width: 34rem;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+h1 {
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 8vw, 3.4rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+p.sub {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 2rem;
+}
+button {
+  font: inherit;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: 0;
+  background: var(--accent);
+  color: var(--accent-text);
+  padding: 0.9rem 2rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px var(--glow);
+  transition: transform 0.15s ease;
+}
+button:active {
+  transform: scale(0.96);
+}
+button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+#stage {
+  min-height: 15rem;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dog-wrap {
+  display: none;
+  position: relative;
+}
+.dog-wrap.on {
+  display: block;
+}
+.dog {
+  font-size: 7rem;
+  line-height: 1;
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: dance 0.7s ease-in-out infinite;
+}
+.note {
+  position: absolute;
+  font-size: 1.8rem;
+  opacity: 0;
+  animation: float 2s ease-out infinite;
+}
+.n1 {
+  left: -1.5rem;
+  top: 1rem;
+}
+.n2 {
+  right: -1.5rem;
+  top: 2rem;
+  animation-delay: 0.6s;
+}
+.n3 {
+  left: 2.5rem;
+  top: -1rem;
+  animation-delay: 1.2s;
+}
+.shadow {
+  width: 5rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--text);
+  opacity: 0.15;
+  margin: 0.3rem auto 0;
+  animation: sh 0.7s ease-in-out infinite;
+}
+.msg {
+  margin-top: 1rem;
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: 1.8rem;
+  min-height: 2.2rem;
+}
+@keyframes dance {
+  0% {
+    transform: translateY(0) rotate(-12deg);
+  }
+  25% {
+    transform: translateY(-1.4rem) rotate(0deg) scaleY(1.05);
+  }
+  50% {
+    transform: translateY(0) rotate(12deg);
+  }
+  75% {
+    transform: translateY(-1.4rem) rotate(0deg) scaleY(1.05);
+  }
+  100% {
+    transform: translateY(0) rotate(-12deg);
+  }
+}
+@keyframes sh {
+  0%,
+  50%,
+  100% {
+    transform: scaleX(1);
+  }
+  25%,
+  75% {
+    transform: scaleX(0.6);
+  }
+}
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-3rem) rotate(15deg);
+  }
+}
+.heart {
+  position: fixed;
+  bottom: -2rem;
+  font-size: 1.5rem;
+  pointer-events: none;
+  animation: rise 3.5s linear forwards;
+}
+@keyframes rise {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+.carousel {
+  margin-top: 2.5rem;
+  position: relative;
+}
+.carousel h2 {
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-weight: 600;
+  font-size: 1.9rem;
+  margin: 0 0 0.8rem;
+}
+.track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-radius: 1.25rem;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  margin: 0;
+  aspect-ratio: 4/5;
+  max-height: 26rem;
+  width: 100%;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: linear-gradient(145deg, var(--accent), var(--bg2));
+}
+.slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.slide .emoji {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+}
+.slide figcaption {
+  position: relative;
+  width: 100%;
+  padding: 1.2rem 1rem;
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: 1.7rem;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(40, 15, 35, 0.65));
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+.nav button.arrow {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  box-shadow: none;
+}
+.dots {
+  display: flex;
+  gap: 0.45rem;
+}
+.dots i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.35;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+.dots i.on {
+  opacity: 1;
+  transform: scale(1.3);
+  background: var(--accent);
+}
+label.add {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+label.add input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+label.add:focus-within {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    scroll-behavior: auto;
+  }
+  .dog,
+  .shadow,
+  .note {
+    animation: none;
+  }
+  .note {
+    opacity: 1;
+  }
+  .heart {
+    display: none;
+  }
+}
